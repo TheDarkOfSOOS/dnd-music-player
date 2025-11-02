@@ -28,22 +28,16 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 14
-theme_override_constants/margin_top = 10
+theme_override_constants/margin_top = 40
 theme_override_constants/margin_right = 14
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+[node name="VBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer"]
 layout_mode = 2
-
-[node name="Master_slider" type="HSlider" parent="Panel/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 20)
-layout_mode = 2
-max_value = 6.0
-step = 0.01
 
 [node name="Songs_scroll_container" type="ScrollContainer" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
 
@@ -61,6 +55,7 @@ uppercase = true
 
 [node name="Effects_scroll_container" type="ScrollContainer" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
 
@@ -76,4 +71,15 @@ text = "sound effects"
 horizontal_alignment = 1
 uppercase = true
 
-[connection signal="value_changed" from="Panel/MarginContainer/VBoxContainer/Master_slider" to="." method="_on_master_slider_value_changed"]
+[node name="Master_slider" type="HSlider" parent="Panel"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 16.0
+grow_horizontal = 2
+max_value = 6.0
+step = 0.01
+
+[connection signal="value_changed" from="Panel/Master_slider" to="." method="_on_master_slider_value_changed"]
