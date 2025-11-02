@@ -7,8 +7,10 @@ var bus_index: int
 @onready var master_container = %Master_song_container
 const song_container_scene : PackedScene = preload("res://scenes/song_container.tscn")
 
-var effects_dir : DirAccess = DirAccess.open("res://resources/audios/sound_effects/")
-var songs_dir : DirAccess = DirAccess.open("res://resources/audios/bg_music/")
+const effects_path : String = "res://resources/audios/sound_effects/"
+const songs_path : String = "res://resources/audios/bg_music/"
+var effects_dir : DirAccess = DirAccess.open(effects_path)
+var songs_dir : DirAccess = DirAccess.open(songs_path)
 
 func _ready():
 	bus_index = AudioServer.get_bus_index(bus_name)
@@ -16,9 +18,6 @@ func _ready():
 	
 	load_from_dir(songs_dir, false)
 	load_from_dir(effects_dir, true)
-	
-	
-	
 	
 
 func _on_master_slider_value_changed(value: float) -> void:
@@ -41,3 +40,8 @@ func load_from_dir(dir : DirAccess, sfx : bool) -> void:
 			else:
 				pass
 			file_name = dir.get_next()
+	else:
+		if sfx:
+			DirAccess.make_dir_absolute(effects_path)
+		else:
+			DirAccess.make_dir_absolute(songs_path)
