@@ -26,35 +26,54 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_right = 12
-
-[node name="VSlider" type="VScrollBar" parent="Panel/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 10
-
-[node name="MarginContainer2" type="MarginContainer" parent="Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+size_flags_vertical = 3
 theme_override_constants/margin_left = 14
-theme_override_constants/margin_right = 33
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
 layout_mode = 2
 
-[node name="Master_song_container" type="VBoxContainer" parent="Panel/MarginContainer2/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Master_slider" type="HSlider" parent="Panel/MarginContainer2/HBoxContainer/Master_song_container"]
+[node name="Master_slider" type="HSlider" parent="Panel/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 max_value = 6.0
 step = 0.01
 
-[connection signal="value_changed" from="Panel/MarginContainer2/HBoxContainer/Master_song_container/Master_slider" to="." method="_on_master_slider_value_changed"]
+[node name="Songs_scroll_container" type="ScrollContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="Master_song_container" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/Songs_scroll_container"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Song_label" type="Label" parent="Panel/MarginContainer/VBoxContainer/Songs_scroll_container/Master_song_container"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 41
+text = "songs"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="Effects_scroll_container" type="ScrollContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="Master_effect_container" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/Effects_scroll_container"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Effects_label" type="Label" parent="Panel/MarginContainer/VBoxContainer/Effects_scroll_container/Master_effect_container"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 41
+text = "sound effects"
+horizontal_alignment = 1
+uppercase = true
+
+[connection signal="value_changed" from="Panel/MarginContainer/VBoxContainer/Master_slider" to="." method="_on_master_slider_value_changed"]

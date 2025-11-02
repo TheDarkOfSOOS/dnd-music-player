@@ -4,7 +4,8 @@ extends Control
 var bus_name: String = "Master"
 var bus_index: int
 @onready var master_slider = %Master_slider
-@onready var master_container = %Master_song_container
+@onready var master_song_container = %Master_song_container
+@onready var master_effect_container: VBoxContainer = %Master_effect_container
 const song_container_scene : PackedScene = preload("res://scenes/song_container.tscn")
 
 const effects_path : String = "res://resources/audios/sound_effects/"
@@ -36,7 +37,9 @@ func load_from_dir(dir : DirAccess, sfx : bool) -> void:
 					new_song.audio_stream = AudioStreamMP3.load_from_file(dir.get_current_dir()+"/"+file_name)
 					if sfx:
 						new_song.is_sfx = true
-					master_container.add_child(new_song)
+						master_effect_container.add_child(new_song)
+					else:
+						master_song_container.add_child(new_song)
 			else:
 				pass
 			file_name = dir.get_next()
