@@ -42,6 +42,6 @@ func load_from_dir(dir : DirAccess, sfx : bool) -> void:
 			file_name = dir.get_next()
 	else:
 		if sfx:
-			DirAccess.make_dir_absolute(effects_path)
+			DirAccess.make_dir_recursive_absolute(effects_path)
 		else:
-			DirAccess.make_dir_absolute(songs_path)
+			DirAccess.make_dir_recursive_absolute(songs_path)
