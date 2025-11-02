@@ -1,0 +1,21 @@
+config_version=5
+
+[application]
+
+config/name="dnd-music-player"
+run/main_scene="uid://dngyvehtqfbxm"
+config/features=PackedStringArray("4.4", "Forward Plus")
+config/icon="res://icon.svg"
+
+[audio]
+
+buses/default_bus_layout="uid://dvp6ouwet1ksy"
+
+[display]
+
+window/size/mode=2
+window/size/resizable=false
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0

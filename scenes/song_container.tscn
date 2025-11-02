@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://cc26dld25slnu"]
+
+[ext_resource type="Script" uid="uid://572w6axuijrx" path="res://scenes/song_container.gd" id="1_7eiwf"]
+[ext_resource type="Texture2D" uid="uid://c6i8g7f7ao708" path="res://resources/img/play_icon.png" id="2_oyi06"]
+[ext_resource type="Texture2D" uid="uid://bpr3tiu0t0cih" path="res://resources/img/restart_icon.png" id="3_nb4jx"]
+
+[node name="Song_container" type="HBoxContainer"]
+theme_override_constants/separation = 11
+script = ExtResource("1_7eiwf")
+
+[node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Water Phase"
+vertical_alignment = 1
+
+[node name="Play" type="Button" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+icon = ExtResource("2_oyi06")
+
+[node name="Restart" type="Button" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+icon = ExtResource("3_nb4jx")
+
+[node name="Fade" type="Button" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Fade"
+
+[node name="HSlider" type="HSlider" parent="."]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 1
+max_value = 4.0
+step = 0.01
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
+[connection signal="pressed" from="Play" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="Fade" to="." method="_on_fade_pressed"]
+[connection signal="value_changed" from="HSlider" to="." method="_on_slider_value_changed"]
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]
