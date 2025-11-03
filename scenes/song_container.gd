@@ -1,4 +1,4 @@
-extends HBoxContainer
+class_name SongContainer extends HBoxContainer
 
 var play_icon : Texture2D = preload("res://resources/img/play_icon.png")
 var pause_icon : Texture2D = preload("res://resources/img/pause_icon.png")
@@ -57,3 +57,5 @@ func _on_restart_pressed() -> void:
 func _on_audio_stream_player_2d_finished() -> void:
 	if is_sfx:
 		play_pause_button.icon = play_icon
+	else:
+		player.play()

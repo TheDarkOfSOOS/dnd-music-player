@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dngyvehtqfbxm"]
+[gd_scene load_steps=3 format=3 uid="uid://dngyvehtqfbxm"]
 
 [ext_resource type="Script" uid="uid://c52ffthmrnmim" path="res://scenes/main_scene.gd" id="1_rt2n2"]
+[ext_resource type="Texture2D" uid="uid://bpr3tiu0t0cih" path="res://resources/img/restart_icon.png" id="2_pw63i"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -28,58 +29,75 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 14
-theme_override_constants/margin_top = 40
+theme_override_constants/margin_top = 90
 theme_override_constants/margin_right = 14
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer"]
+[node name="BoxContainer" type="HBoxContainer" parent="Panel/MarginContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Songs_scroll_container" type="ScrollContainer" parent="Panel/MarginContainer/VBoxContainer"]
+[node name="Songs_scroll_container" type="ScrollContainer" parent="Panel/MarginContainer/BoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
 
-[node name="Master_song_container" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/Songs_scroll_container"]
+[node name="Master_song_container" type="VBoxContainer" parent="Panel/MarginContainer/BoxContainer/Songs_scroll_container"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Song_label" type="Label" parent="Panel/MarginContainer/VBoxContainer/Songs_scroll_container/Master_song_container"]
+[node name="Song_label" type="Label" parent="Panel/MarginContainer/BoxContainer/Songs_scroll_container/Master_song_container"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 41
 text = "songs"
 horizontal_alignment = 1
 uppercase = true
 
-[node name="Effects_scroll_container" type="ScrollContainer" parent="Panel/MarginContainer/VBoxContainer"]
+[node name="Effects_scroll_container" type="ScrollContainer" parent="Panel/MarginContainer/BoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
 
-[node name="Master_effect_container" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/Effects_scroll_container"]
+[node name="Master_effect_container" type="VBoxContainer" parent="Panel/MarginContainer/BoxContainer/Effects_scroll_container"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Effects_label" type="Label" parent="Panel/MarginContainer/VBoxContainer/Effects_scroll_container/Master_effect_container"]
+[node name="Effects_label" type="Label" parent="Panel/MarginContainer/BoxContainer/Effects_scroll_container/Master_effect_container"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 41
 text = "sound effects"
 horizontal_alignment = 1
 uppercase = true
 
-[node name="Master_slider" type="HSlider" parent="Panel"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 20)
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 16.0
+offset_bottom = 72.0
 grow_horizontal = 2
+
+[node name="Re-import" type="Button" parent="Panel/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("2_pw63i")
+
+[node name="Master_slider" type="HSlider" parent="Panel/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
 max_value = 6.0
 step = 0.01
 
-[connection signal="value_changed" from="Panel/Master_slider" to="." method="_on_master_slider_value_changed"]
+[node name="OptionButton" type="Button" parent="Panel/HBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+text = "Change"
+
+[connection signal="pressed" from="Panel/HBoxContainer/Re-import" to="." method="_on_reimport_pressed"]
+[connection signal="value_changed" from="Panel/HBoxContainer/Master_slider" to="." method="_on_master_slider_value_changed"]
+[connection signal="pressed" from="Panel/HBoxContainer/OptionButton" to="." method="_on_option_button_pressed"]
